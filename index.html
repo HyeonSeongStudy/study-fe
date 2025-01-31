@@ -1,0 +1,32 @@
+<!-- html 생성 -> 버튼 생성 -> 이벤트 리스너 -> 함수 추가 -->
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id = "root"></div>
+    </body>
+    <script src = "https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src = "https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <script type="text/babel">
+        const root = document.getElementById("root");
+
+        const Title = () => (
+            <h3 onMouseEnter = {() => console.log("mouse enter")}>Hello World</h3>
+        ); 
+
+        const Button = () => (
+            <button style = {{color : "tomato"}}onClick = {() => console.log("button clicked")}>Click me</button>
+        );
+
+        const Container = () => (
+            <div>
+                <Title />
+                <Button />
+            </div>
+        );
+
+        ReactDOM.render(<Container />, root);
+
+
+    </script>
+</html>
