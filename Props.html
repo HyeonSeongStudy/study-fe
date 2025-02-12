@@ -1,0 +1,57 @@
+<!-- html 생성 -> 버튼 생성 -> 이벤트 리스너 -> 함수 추가 -->
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id = "root"></div>
+    </body>
+    <script src = "https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src = "https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src = "https:/unpkg.com/prop-types@15.7.2/prop-types.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+    <script type="text/babel">
+
+        function Btn ({name, onClick = false}){
+            return (
+                <button 
+                    onClick = {onClick}
+                    style = {{
+                    backgroundColor : "blue",
+                    color : "white",
+                    padding : "10px 20px",
+                    fontSize : "20px",
+                    margin : "10px",
+                    borderRadius : "5px",
+                    border : "none"
+                    }}>
+                     {name}
+                </button>
+            );
+
+        }
+
+        const MemoBtn = React.memo(Btn);
+
+        Btn.propTypes = {
+            name : PropTypes.string,
+            onClick : PropTypes.func.isRequired
+        };
+
+        function App(){
+            const [value, setValue] = React.useState("Save Changes");
+            const onClick = () => setValue("Revert Changes");
+
+            return (
+                <div>
+                    <MemoBtn name = {value} onClick = {onClick} />
+                    <MemoBtn name = "Delete" />
+                </div>
+            );
+        }
+
+        // 웹 페이지 렌더링
+        const root = document.getElementById("root");
+        ReactDOM.render(<App />, root);
+
+
+    </script>
+</html>
